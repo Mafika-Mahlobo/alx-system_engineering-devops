@@ -5,22 +5,16 @@ contains a function that return the number of subcribers from reddit API
 """
 
 import requests
+from read_credentials import read_file
 
 def number_of_subscribers(subreddit):
      
-    #read credentials
     file_path = 'credentials.txt'
-    credentials = []
-    with open(file_path, 'r') as file:
-        for line in file:
-            username, password = line.strip().split(",")
-            credentials.append((username, password))
-
     
-    CLIENT_ID = credentials[0][0]
-    SECRET_KEY = credentials[0][1]
-    username = credentials[1][0]
-    password = credentials[1][1]
+    CLIENT_ID = read_file(file_path)[0][0]
+    SECRET_KEY = read_file(file_path)[0][1]
+    username = read_file(file_path)[1][0]
+    password = read_file(file_path)[1][1]
     
     headers = {"User-Agent": "0-subs/1.0"}
     
